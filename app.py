@@ -5,16 +5,29 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import re
+import os
 
-# ✅ Download NLTK data (important for Streamlit Cloud)
-nltk.download('punkt')
-nltk.download('stopwords')
+# ✅ Ensure NLTK data is stored persistently
+nltk_data_dir = os.path.join(os.getcwd(), "nltk_data")
+if not os.path.exists(nltk_data_dir):
+    os.mkdir(nltk_data_dir)
+nltk.data.path.append(nltk_data_dir)
+
+# ✅ Download required NLTK resources (only if missing)
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt", download_dir=nltk_data_dir)
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords", download_dir=nltk_data_dir)
 
 # Load model and vectorizer
 model = pickle.load(open('spam_classifier.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
-# Preprocess function
+# Preprocessing
 ps = PorterStemmer()
 
 def transform_text(text):
