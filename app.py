@@ -6,14 +6,16 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import re
 
+# ✅ Download NLTK data (important for Streamlit Cloud)
+nltk.download('punkt')
+nltk.download('stopwords')
+
 # Load model and vectorizer
 model = pickle.load(open('spam_classifier.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
-# Preprocess
+# Preprocess function
 ps = PorterStemmer()
-nltk.download('stopwords')
-nltk.download('punkt')
 
 def transform_text(text):
     text = text.lower()
@@ -22,7 +24,7 @@ def transform_text(text):
     text = [ps.stem(word) for word in text if word not in stopwords.words('english') and word not in string.punctuation]
     return ' '.join(text)
 
-# UI
+# Streamlit UI
 st.title("📩 SMS Spam Classifier")
 
 input_sms = st.text_area("Enter the message")
