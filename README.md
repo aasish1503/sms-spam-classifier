@@ -97,7 +97,7 @@ Public and shareable link
 
 End-to-end NLP and ML pipeline
 
-High accuracy (~97–98%)
+High accuracy - 96%
 
 Lightweight and fast predictions
 
