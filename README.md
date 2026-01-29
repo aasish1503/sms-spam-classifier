@@ -1,4 +1,4 @@
-                                                                       📩 SMS Spam Classifier using Machine Learning
+📩 SMS Spam Classifier using Machine Learning
 
 🚀 Live Demo:
 https://sms-spam-classifier-ikz9yutobvb8fajbongy2p.streamlit.app/
